@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Segurança da Informação</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+
+    <div id="intro-popup" class="popup">
+        <div class="popup-content">
+            <div id="slide-container">
+                <div class="slide active">
+                    <h2>Bem-vindo ao FAQ Interativo de Segurança da Informação!</h2>
+                    <p>Neste jogo, você irá explorar os pilares fundamentais da segurança da informação de maneira divertida e educativa.</p>
+                </div>
+                <div class="slide">
+                    <h2>Como funciona?</h2>
+                    <p>Você pode escolher entre quatro temas: Confidencialidade, Integridade, Disponibilidade e Autenticidade. Cada tema tem 10 perguntas para você responder.</p>
+                </div>
+                <div class="slide">
+                    <h2>Objetivo</h2>
+                    <p>O objetivo é aprender e testar seus conhecimentos sobre segurança da informação, obtendo a maior pontuação possível.</p>
+                </div>
+                <div class="slide">
+                    <h2>Pronto para começar?</h2>
+                    <p>Clique no botão abaixo para escolher um tema e iniciar o jogo!</p>
+                    <button id="start-game">Vamos Jogar!</button>
+                </div>
+            </div>
+            <button id="next-slide">Próximo</button>
+        </div>
+    </div>
+
+    <div id="theme-selection" class="hidden">
+        <h1>Escolha um Tema</h1>
+        <ul>
+            <li><button onclick="window.location.href='confidencialidade.html'">Confidencialidade</button></li>
+            <li><button onclick="window.location.href='integridade.html'">Integridade</button></li>
+            <li><button onclick="window.location.href='disponibilidade.html'">Disponibilidade</button></li>
+            <li><button onclick="window.location.href='autenticidade.html'"> Autenticidade</button></li>
+        </ul>
+        <button id="back-button" onclick="location.reload();">Voltar</button>
+    </div> 
+
+    <!-- Certifique-se de que o nome do arquivo JS está correto -->
+    <script src="scripts.js"></script>
+</body>
+</html>

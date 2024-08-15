@@ -1,0 +1,289 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.popup {
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    z-index: 2;
+    text-align: left; /* Alinhamento à esquerda */
+}
+
+.popup-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#status-panel {
+    color: white;
+    font-size: 14px;
+    text-align: right;
+}
+
+.popup-content {
+    padding-left: 20px; /* Adiciona um espaçamento à esquerda */
+}
+
+.question-container {
+    margin-bottom: 20px;
+}
+
+#question-number-text {
+    margin: 20px 0 0 0; /* Adiciona espaçamento superior */
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#question-text {
+    margin: 10px 0 20px 0;
+    font-size: 20px;
+}
+
+#answer-options {
+    list-style: none;
+    padding: 0;
+}
+
+#answer-options li {
+    margin: 10px 0;
+}
+
+/* Estilização da Checkbox */
+#answer-options input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#answer-options label {
+    position: relative;
+    padding-left: 33px; /* Ajuste para alinhar com o novo tamanho da checkbox */
+    margin-bottom: 15px;
+    font-size: 14px; /* Tamanho de fonte ajustado anteriormente */
+    cursor: pointer;
+    display: block;
+    color: #ffffff;
+    line-height: 23px; /* Garantir que a linha de texto tenha a mesma altura da checkbox */
+}
+
+#answer-options label:before, #answer-options label:after {
+    content: '';
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+#answer-options label:before {
+    height: 23px; /* Diminuído em 2 pixels */
+    width: 23px; /* Diminuído em 2 pixels */
+    border: 2px solid #ffffff;
+    top: 0;
+    left: 0;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+#answer-options input[type="radio"]:checked ~ label:before {
+    background-color: #008000;
+    border-color: #008000;
+}
+
+#answer-options input[type="radio"]:checked ~ label:after {
+    content: '\2713'; /* Código Unicode para o símbolo de check */
+    color: white;
+    font-size: 16px; /* Ajustado para caber melhor na nova checkbox */
+    top: 2px;
+    left: 6px; /* Reajustado para o novo tamanho */
+    transform: scale(1.2);
+    transition: all 0.2s ease;
+}
+
+#answer-options label:hover:before {
+    border-color: #008000;
+}
+
+button {
+    background-color: #008000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+button:hover {
+    background-color: #006400;
+}
+
+.hidden {
+    display: none;
+}
+/* CSS permanece o mesmo com a adição de um estilo para os botões de ação */
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+/* Botões de ação */
+#submit-answer {
+    background-color: #007bff; /* Azul */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#next-question {
+    background-color: #28a745; /* Verde claro */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#submit-answer:hover, #next-question:hover {
+    opacity: 0.8;
+}
+
+/* Estilos para o resultado final */
+#final-result {
+    display: none; /* Começa escondido */
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    width: 50%;
+}
+
+#final-result h3 {
+    margin: 0 0 10px 0;
+}
+
+#final-result p {
+    margin: 5px 0;
+}
+
+#understood-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#understood-button:hover {
+    opacity: 0.8;
+}
+
+/* Correção para exibição das bordas corretas/incorretas */
+.correct, .incorrect {
+    display: block;
+    padding: 5px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    line-height: 23px; /* Garantir que a linha de texto tenha a mesma altura da checkbox */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.correct {
+    border: 2px solid #28a745; /* Borda verde */
+}
+
+.incorrect {
+    border: 2px solid #dc3545; /* Borda vermelha */
+}
+
+/* Botão de Sair */
+#exit-button {
+    background-color: #dc3545; /* Vermelho */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+#exit-button:hover {
+    background-color: #c82333;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+.modal-content {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+}
+
+.modal-content button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.modal-content button:hover {
+    opacity: 0.8;
+}
+
+.hidden {
+    display: none;
+}

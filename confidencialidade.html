@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confidencialidade - Jogo</title>
+    <link rel="stylesheet" href="confidencialidade.css">
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+
+    <div id="question-popup" class="popup">
+        <div class="popup-header">
+            <div id="status-panel">
+                <span id="question-number">Pergunta 1/10</span>
+                <span id="correct-answers">Acertos: 0</span>
+                <span id="incorrect-answers">Incorretas: 0</span>
+            </div>
+        </div>
+        <div class="popup-content">
+            <div class="question-container">
+                <h3 id="question-number-text">Pergunta 1</h3>
+                <h2 id="question-text">Aqui vai a pergunta</h2>
+            </div>
+            <ul id="answer-options">
+                <!-- As opções de resposta serão geradas dinamicamente -->
+            </ul>
+            <div id="final-result" class="hidden">
+                <h3>Resultado Final</h3>
+                <p>Esta é uma mensagem de teste.</p>
+            </div>            
+            <div class="action-buttons">
+                <button id="exit-button">Sair</button>
+                <button id="submit-answer">Responder</button>
+                <button id="next-question" class="hidden">Próxima</button>
+            </div>            
+        </div>
+    </div>
+    <div id="confirm-exit-modal" class="hidden modal">
+        <div class="modal-content">
+            <p>Quer mesmo sair?</p>
+            <button id="confirm-exit-yes">Sim</button>
+            <button id="confirm-exit-no">Não</button>
+        </div>
+    </div>
+    <div id="no-answer-modal" class="hidden modal">
+        <div class="modal-content">
+            <p>Você ainda não respondeu</p>
+            <button id="no-answer-ok">Ok</button>
+        </div>
+    </div>
+
+    <script src="confidencialidade.js"></script>
+</body>
+</html>
